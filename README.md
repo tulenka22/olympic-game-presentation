@@ -28,6 +28,7 @@ npm run preview
 
 Деплой — через GitHub Actions в
 `https://github.com/tulenka22/olympic-game-presentation`.
+Один раз включите **Settings → Pages → Source: GitHub Actions**.
 После пуша в `master` workflow собирает `dist` и публикует его на
 `https://tulenka22.github.io/olympic-game-presentation/`.
 
