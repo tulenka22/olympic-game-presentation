@@ -8,11 +8,13 @@ const viewTransition = {
   apply: 'build',
   transformIndexHtml(html) {
     const style = `
-      @view-transition { navigation: auto; }
-      ::view-transition-old(root) { animation: handoff-fade-out 0.34s ease both; }
-      ::view-transition-new(root) { animation: handoff-fade-in 0.34s ease both; }
-      @keyframes handoff-fade-out { to { opacity: 0; } }
-      @keyframes handoff-fade-in { from { opacity: 0; } }
+      <style>
+        @view-transition { navigation: auto; }
+        ::view-transition-old(root) { animation: handoff-fade-out 0.34s ease both; }
+        ::view-transition-new(root) { animation: handoff-fade-in 0.34s ease both; }
+        @keyframes handoff-fade-out { to { opacity: 0; } }
+        @keyframes handoff-fade-in { from { opacity: 0; } }
+      </style>
     `
     return html.replace('</head>', `${style}</head>`)
   },
