@@ -1,0 +1,769 @@
+:root {
+  --bg: #070b10;
+  --bg-soft: #0d141b;
+  --ink: #f3f0e8;
+  --muted: #8d9aa4;
+  --line: rgba(255, 255, 255, 0.13);
+  --gold: #f4c66d;
+  --gold-deep: #b8872d;
+  --blue: #4aa3ff;
+  --green: #72c89a;
+  --red: #ee6b7e;
+  --paper: #f2ede2;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-num: 'Barlow Condensed', 'Manrope', sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+/* Reveal 6 paints its viewport white by default; the letterbox around the
+   16:9 canvas must stay dark. */
+.reveal-viewport {
+  background-color: var(--bg) !important;
+  color: var(--ink);
+}
+
+.reveal,
+.reveal .backgrounds,
+.reveal .slides {
+  background: transparent;
+}
+
+.reveal {
+  font-family: var(--font-body);
+  color: var(--ink);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0;
+  background:
+    radial-gradient(60% 86% at 80% 0%, rgba(244, 198, 109, 0.16), transparent 60%),
+    radial-gradient(64% 78% at 4% 110%, rgba(25, 87, 122, 0.24), transparent 62%),
+    linear-gradient(125deg, #111820 0%, #0a1016 62%, #070b10 100%);
+}
+
+/* Reveal's .present rule sets inline display:block; restore the flex column
+   used by the slide layout. */
+.reveal .slides > section.present {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reveal .slides section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: radial-gradient(72% 72% at 50% 46%, #000, transparent 88%);
+}
+
+.reveal .slides section > *:not(.rings) {
+  position: relative;
+  z-index: 1;
+}
+
+.reveal .controls {
+  color: var(--gold);
+}
+
+.reveal .progress {
+  color: var(--gold);
+  height: 3px;
+}
+
+.reveal .slide-number {
+  color: var(--muted);
+  font-family: var(--font-num);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.slide-layout {
+  display: grid;
+  grid-template-columns: 53% 47%;
+  grid-template-rows: 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8.2vh 4.3vw 7.2vh 6.3vw;
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 2.8vh;
+  font-family: var(--font-num);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow span {
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(64px, 5.8vw, 92px);
+  font-weight: 600;
+  line-height: 0.84;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.slide--title h1 {
+  font-size: clamp(108px, 12vw, 196px);
+  line-height: 0.74;
+}
+
+h2 {
+  margin: 2.6vh 0 0;
+  font-family: var(--font-body);
+  font-size: clamp(24px, 2.2vw, 35px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.lead {
+  max-width: 36em;
+  margin: 2.5vh 0 0;
+  font-size: clamp(17px, 1.36vw, 24px);
+  line-height: 1.5;
+  color: #c3cdd4;
+}
+
+.note {
+  max-width: 39em;
+  margin: 2.4vh 0 0;
+  padding-left: 1.2em;
+  border-left: 1px solid rgba(244, 198, 109, 0.65);
+  font-size: clamp(12px, 0.9vw, 15px);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.stats {
+  display: flex;
+  gap: clamp(26px, 4vw, 64px);
+  margin-top: 3.2vh;
+  padding-top: 2vh;
+  border-top: 1px solid rgba(244, 198, 109, 0.34);
+}
+
+.stat {
+  min-width: 7.4em;
+}
+
+.stat__value {
+  display: block;
+  font-family: var(--font-num);
+  font-size: clamp(48px, 4.4vw, 70px);
+  font-weight: 600;
+  line-height: 0.85;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__label {
+  display: block;
+  margin-top: 0.8vh;
+  font-family: var(--font-num);
+  font-size: clamp(10px, 0.8vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Photo panels ---------- */
+
+.photo {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  overflow: hidden;
+  background: #101a22;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.86) contrast(1.18) brightness(0.7);
+}
+
+.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8, 13, 18, 0.1), transparent 38%, rgba(5, 8, 12, 0.86)),
+    linear-gradient(90deg, rgba(7, 11, 16, 0.58), transparent 38%);
+  mix-blend-mode: multiply;
+}
+
+.photo figcaption {
+  position: absolute;
+  left: 2.2vw;
+  right: 2.2vw;
+  bottom: 4.3vh;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--font-num);
+  font-size: clamp(10px, 0.8vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f3f0e8;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* Olympic flag panel on the symbols slide. */
+.artifact {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3vh;
+  margin: 0;
+  padding: 7vh 4vw;
+  background:
+    radial-gradient(65% 60% at 50% 40%, rgba(255, 255, 255, 0.09), transparent 65%),
+    #0c131a;
+  border-left: 1px solid rgba(244, 198, 109, 0.2);
+}
+
+.artifact img {
+  display: block;
+  width: 72%;
+  max-height: 56%;
+  object-fit: contain;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.artifact figcaption {
+  display: flex;
+  width: 72%;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--font-num);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Title ---------- */
+
+.slide--title .copy {
+  justify-content: center;
+}
+
+.slide--title h2 {
+  max-width: 12em;
+}
+
+.slide--title .lead {
+  max-width: 26em;
+}
+
+.rings {
+  position: absolute;
+  right: 2.2vw;
+  top: 3.1vh;
+  z-index: 4;
+  display: flex;
+}
+
+.rings i {
+  width: clamp(16px, 1.45vw, 24px);
+  height: clamp(16px, 1.45vw, 24px);
+  margin-left: -0.34em;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.rings i:nth-child(1) { color: #4aa3ff; }
+.rings i:nth-child(2) { color: #8a8f98; }
+.rings i:nth-child(3) { color: #ee6b7e; }
+.rings i:nth-child(4) { color: #f4c66d; }
+.rings i:nth-child(5) { color: #72c89a; }
+
+/* ---------- Symbols ---------- */
+
+.symbol-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2.8vh;
+}
+
+.symbol-row {
+  display: grid;
+  grid-template-columns: 4.8em 1fr;
+  gap: 0 1.1em;
+  padding: 1.05vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.symbol-row span {
+  font-family: var(--font-num);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.symbol-row strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.symbol-row p {
+  grid-column: 2;
+  margin: 3px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------- Tech / media ---------- */
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.8vw;
+  margin-top: 2.6vh;
+}
+
+.duo-title {
+  margin-bottom: 1.1vh;
+  padding-bottom: 0.8vh;
+  border-bottom: 1px solid rgba(244, 198, 109, 0.5);
+  font-family: var(--font-num);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.milestone {
+  display: grid;
+  grid-template-columns: 4.2em 1fr;
+  gap: 0.9em;
+  padding: 0.78vh 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.milestone span {
+  font-family: var(--font-num);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.milestone p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------- People ---------- */
+
+.people-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.4vh;
+}
+
+.people-list > div {
+  display: grid;
+  grid-template-columns: 4.8em 1fr;
+  gap: 0 1em;
+  padding: 1.05vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.people-list span {
+  font-family: var(--font-num);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.people-list strong {
+  display: block;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.people-list p {
+  grid-column: 2;
+  margin: 3px 0 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.people-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 7px;
+  padding: 3vh 2.2vw;
+}
+
+.people-photos figure,
+.russia-photos figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: #101a22;
+}
+
+.people-photos img,
+.russia-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  display: block;
+  filter: grayscale(1) contrast(1.18) brightness(0.78);
+}
+
+.people-photos figure::after,
+.russia-photos figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 42%, rgba(5, 8, 12, 0.8));
+}
+
+.people-photos figcaption,
+.russia-photos figcaption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  z-index: 2;
+  font-family: var(--font-num);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f3f0e8;
+}
+
+/* ---------- Russia ---------- */
+
+.russia-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.4vh;
+}
+
+.russia-list > div {
+  display: grid;
+  grid-template-columns: 4.8em 1fr;
+  gap: 1em;
+  padding: 1.05vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.russia-list span {
+  font-family: var(--font-num);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.russia-list p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.russia-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 7px;
+  padding: 3vh 2.2vw;
+}
+
+.russia-photos .wide {
+  grid-column: span 2;
+}
+
+.russia-photos .wide img {
+  object-position: center 18%;
+}
+
+/* ---------- Today ---------- */
+
+.hosts {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.6vh;
+}
+
+.host {
+  display: grid;
+  grid-template-columns: 4.5em 1fr;
+  gap: 0 1em;
+  padding: 1.15vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.host span {
+  font-family: var(--font-num);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--violet, #9a8cff);
+}
+
+.host strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.host p {
+  grid-column: 2;
+  margin: 3px 0 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---------- App / QR ---------- */
+
+.slide--app {
+  background:
+    radial-gradient(55% 82% at 78% 0%, rgba(244, 198, 109, 0.28), transparent 60%),
+    radial-gradient(70% 90% at 6% 110%, rgba(17, 70, 102, 0.36), transparent 58%),
+    linear-gradient(125deg, #111820 0%, #0a1016 62%, #070b10 100%);
+}
+
+.slide--app .slide-layout {
+  grid-template-columns: 55% 45%;
+  align-items: center;
+}
+
+.slide--app .copy {
+  padding-right: 2vw;
+}
+
+.slide--app h1 {
+  font-size: clamp(56px, 5.3vw, 82px);
+}
+
+.app-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2.4vh;
+}
+
+.app-features span {
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font-family: var(--font-num);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d7dee7;
+}
+
+.app-hint {
+  margin: 2.8vh 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.app-hint b {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin: 0 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #111;
+  font-size: 15px;
+}
+
+.qr-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2vh;
+  padding: 2vw;
+}
+
+.qr-kicker {
+  margin: 0;
+  font-family: var(--font-num);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.qr-frame {
+  padding: 14px;
+  border-radius: 16px;
+  background: #fff8e7;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+}
+
+.qr-frame canvas {
+  display: block;
+  width: clamp(210px, 18vw, 286px);
+  height: clamp(210px, 18vw, 286px);
+}
+
+.qr-link {
+  font-family: var(--font-num);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #fff;
+}
+
+.qr-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 1px solid rgba(244, 198, 109, 0.55);
+  border-radius: 999px;
+  background: var(--gold);
+  color: #111;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.qr-button:hover {
+  transform: translateY(-2px);
+  background: #ffd98a;
+}
+
+/* ---------- Hand-off fallback ---------- */
+
+body.is-handing-off::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #04070c;
+  animation: handoff-cover 0.34s ease forwards;
+}
+
+@keyframes handoff-cover {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes handoff-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes handoff-fade-in {
+  from { opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .slide-layout,
+  .slide--app .slide-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 58% 42%;
+  }
+
+  .copy {
+    order: 2;
+    padding: 5vh 7vw;
+  }
+
+  .photo,
+  .artifact {
+    order: 1;
+  }
+
+  .rings {
+    right: 5vw;
+    top: 2.5vh;
+  }
+
+  .slide--title h1 {
+    font-size: clamp(64px, 16vw, 110px);
+  }
+
+  h1 {
+    font-size: clamp(46px, 9vw, 70px);
+  }
+
+  .people-photos,
+  .russia-photos {
+    padding: 2vh 4vw;
+  }
+
+  .qr-frame canvas {
+    width: 190px;
+    height: 190px;
+  }
+}
