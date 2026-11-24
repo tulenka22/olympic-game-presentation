@@ -73,19 +73,10 @@ for (const raw of lines) {
   }))
 }
 
-// A thin visual separator after the role/timing block.
-children.splice(3, 0, new Paragraph({
-  spacing: { before: 100, after: 100 },
-  border: {
-    bottom: { color: 'FCB131', size: 12, space: 1, style: 'single' },
-  },
-  children: [new TextRun('')],
-}))
-
 const doc = new Document({
   creator: 'Olympic Games Interactive',
   title: 'Интерактивное путешествие сквозь историю Олимпийских игр — речь',
-  description: 'Речь на защиту проекта, 6:20, Максим и Ваня',
+  description: 'Речь на защиту проекта',
   styles: {
     default: {
       document: {
