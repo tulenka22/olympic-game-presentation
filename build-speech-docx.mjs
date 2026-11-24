@@ -85,7 +85,7 @@ children.splice(3, 0, new Paragraph({
 const doc = new Document({
   creator: 'Olympic Games Interactive',
   title: 'Интерактивное путешествие сквозь историю Олимпийских игр — речь',
-  description: 'Речь на защиту проекта, 6:45, Максим и Ваня',
+  description: 'Речь на защиту проекта, 6:20, Максим и Ваня',
   styles: {
     default: {
       document: {
