@@ -1290,6 +1290,11 @@ body.is-handing-off::after {
   height: 140px;
 }
 
+.intro-grid .qr-card canvas {
+  width: 172px;
+  height: 172px;
+}
+
 .qr-card span {
   font-family: var(--font-num);
   font-size: 10px;
