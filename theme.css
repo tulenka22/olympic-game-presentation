@@ -1286,8 +1286,8 @@ body.is-handing-off::after {
 
 .qr-card canvas {
   display: block;
-  width: 118px;
-  height: 118px;
+  width: 140px;
+  height: 140px;
 }
 
 .qr-card span {
