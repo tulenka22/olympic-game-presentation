@@ -31,7 +31,7 @@ jobs:
       - name: Build
         env:
           VITE_APP_URL: https://olympic-game.ru/
-          VITE_SHORT_URL: olympic-game.ru
+          VITE_PRESENTATION_URL: https://tulenka22.github.io/olympic-game-presentation/
         run: npm run build
 
       - uses: actions/configure-pages@v5

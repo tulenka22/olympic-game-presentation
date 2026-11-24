@@ -5,7 +5,9 @@ import 'reveal.js/reveal.css'
 import './theme.css'
 
 const APP_URL = import.meta.env.VITE_APP_URL || 'http://localhost:5173/'
-const SHORT_URL = import.meta.env.VITE_SHORT_URL || 'localhost:5173'
+const PRESENTATION_URL =
+  import.meta.env.VITE_PRESENTATION_URL ||
+  'https://tulenka22.github.io/olympic-game-presentation/'
 
 let leaving = false
 
@@ -48,22 +50,37 @@ function isLastSlide() {
     : Reveal.getIndices().h === Reveal.getTotalSlides() - 1
 }
 
-async function setupQr() {
-  const canvas = document.getElementById('qr-canvas')
-  const shortUrl = document.getElementById('short-url')
-  if (shortUrl) shortUrl.textContent = SHORT_URL
-  if (!canvas) return
+const QR_TARGETS = {
+  app: () => appUrl(),
+  presentation: () => PRESENTATION_URL,
+}
 
-  try {
-    await QRCode.toCanvas(canvas, appUrl(), {
-      width: 320,
-      margin: 1,
-      errorCorrectionLevel: 'M',
-      color: { dark: '#0b1119', light: '#fff8e7' },
-    })
-  } catch (error) {
-    console.warn('QR code could not be rendered:', error)
-  }
+async function setupQr() {
+  const canvases = [...document.querySelectorAll('canvas[data-qr]')]
+
+  await Promise.all(
+    canvases.map(async (canvas) => {
+      const target = QR_TARGETS[canvas.dataset.qr]?.()
+      if (!target) return
+
+      try {
+        await QRCode.toCanvas(canvas, target, {
+          width: Number(canvas.getAttribute('width')) || 320,
+          margin: 1,
+          errorCorrectionLevel: 'M',
+          color: { dark: '#0b1119', light: '#fff8e7' },
+        })
+
+        // qrcode writes an inline style that would override the CSS size of
+        // each slot. The backing bitmap is already large enough, so let the
+        // stylesheet decide how big the code is on the slide.
+        canvas.style.removeProperty('width')
+        canvas.style.removeProperty('height')
+      } catch (error) {
+        console.warn(`QR code "${canvas.dataset.qr}" could not be rendered:`, error)
+      }
+    }),
+  )
 }
 
 document.getElementById('open-app')?.addEventListener('click', goToApp)

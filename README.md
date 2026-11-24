@@ -43,20 +43,19 @@ cp .env.example .env.local
 ```
 
 - `VITE_APP_URL` — куда ведёт QR и кнопка «Открыть приложение»;
-- `VITE_SHORT_URL` — текст короткой ссылки на слайде.
+- `VITE_PRESENTATION_URL` — куда ведёт QR этой презентации.
 
 Production-значения лежат в `.env.production`:
 
 ```env
 VITE_APP_URL=https://olympic-game.ru/
-VITE_SHORT_URL=olympic-game.ru
+VITE_PRESENTATION_URL=https://tulenka22.github.io/olympic-game-presentation/
 ```
 
 Для локальной проверки скопируйте `.env.example` в `.env.local`.
 
 Последний слайд: `→`, `Space`, `PageDown` или кнопка открывают приложение
-с `?demo=1`. В этом режиме приложение стартует без прелоадера и прогревает
-карточки 2024/1940/1924.
+с `?demo=1`. В этом режиме приложение стартует без прелоадера.
 
 ## Речь
 
@@ -65,4 +64,5 @@ npm run speech:docx
 # speech.docx рядом с package.json
 ```
 
-Исходник — `SPEECH.md`. Роли: Максим и Ваня, хронометраж 6:50.
+Исходник — `SPEECH.md`. Роли: Максим и Ваня, хронометраж 6:45, ещё
+3 минуты на вопросы.

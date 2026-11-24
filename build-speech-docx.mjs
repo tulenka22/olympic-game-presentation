@@ -26,8 +26,9 @@ function runs(text, extra = {}) {
 const children = []
 
 for (const raw of lines) {
-  const line = raw.trimEnd()
+  const line = raw.trimEnd().replace(/`/g, '')
   if (!line.trim()) continue
+  if (line.trim() === '---') continue
 
   if (line.startsWith('### ')) {
     children.push(new Paragraph({
@@ -83,8 +84,8 @@ children.splice(3, 0, new Paragraph({
 
 const doc = new Document({
   creator: 'Olympic Games Interactive',
-  title: 'Олимпийские игры 1896–2028 — речь',
-  description: 'Речь на защиту проекта, 6:50, Максим и Ваня',
+  title: 'Интерактивное путешествие сквозь историю Олимпийских игр — речь',
+  description: 'Речь на защиту проекта, 6:45, Максим и Ваня',
   styles: {
     default: {
       document: {
