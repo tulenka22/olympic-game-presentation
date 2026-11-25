@@ -75,8 +75,8 @@ for (const raw of lines) {
 
 const doc = new Document({
   creator: 'Olympic Games Interactive',
-  title: 'Интерактивное путешествие сквозь историю Олимпийских игр — речь',
-  description: 'Речь на защиту проекта',
+  title: 'Интерактивное путешествие сквозь историю современных Олимпийских игр — речь',
+  description: 'Речь на защиту работы',
   styles: {
     default: {
       document: {
